@@ -29,7 +29,6 @@ const Search = ({ onChangeState, shelfBooks }) => {
       console.log(error);
     }
   };
-  console.log(flag);
   return (
     <div className="search-books">
       <div className="search-books-bar">
