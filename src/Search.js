@@ -42,7 +42,7 @@ const Search = ({ onChangeState, shelfBooks }) => {
         </div>
       </div>
       <div className="search-books-results">
-        {searchBooks.length > 0 &&(<BookList books={searchBooks} onChangeState={onChangeState} />)}
+        {searchBooks.length > 0 &&(<BookList books={searchBooks} onChangeState={onChangeState} from="search"/>)}
         {searchBooks.length === 0 && (<h3>No Data</h3>)}
       </div>
     </div>

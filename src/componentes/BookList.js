@@ -1,5 +1,5 @@
 import BookShelfChanger from "./BookShelfChanger";
-const BookList = ({ books, onChangeState}) => {
+const BookList = ({ books, onChangeState, from}) => {
   return (
     <ol className="books-grid">
       {books.map((bo) => {
@@ -15,7 +15,7 @@ const BookList = ({ books, onChangeState}) => {
                     backgroundImage: `url(${bo.imageLinks? bo.imageLinks.smallThumbnail: "" })`,
                   }}
                 ></div>
-                <BookShelfChanger book={bo} onChangeState={onChangeState} />
+                <BookShelfChanger book={bo} onChangeState={onChangeState}  from={from}/>
               </div>
               <div className="book-title">{bo.title}</div>
               <div className="book-authors">{bo.authors}</div>

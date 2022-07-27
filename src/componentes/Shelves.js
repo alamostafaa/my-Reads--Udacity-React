@@ -15,9 +15,9 @@ const Shelves = ({booksObj, onChangeState}) => {
       </div>
       <div className="list-books-content">
         <div>
-          <Shelf shelfName="currently Reading"  books={shelves.get('currentlyReading')} onChangeState={onChangeState}/>
-          <Shelf shelfName="want To Read" books={shelves.get('wantToRead')} onChangeState={onChangeState}/>
-          <Shelf shelfName="Read"  books={shelves.get('read')} onChangeState={onChangeState}/>
+          <Shelf shelfName="currently Reading"  books={shelves.get('currentlyReading')} onChangeState={onChangeState} from="shelves"/>
+          <Shelf shelfName="want To Read" books={shelves.get('wantToRead')} onChangeState={onChangeState} from="shelves"/>
+          <Shelf shelfName="Read"  books={shelves.get('read')} onChangeState={onChangeState} from="shelves"/>
         </div>
       </div>
       <div className="open-search">
@@ -26,5 +26,4 @@ const Shelves = ({booksObj, onChangeState}) => {
     </div>
   );
 };
-
 export default Shelves;

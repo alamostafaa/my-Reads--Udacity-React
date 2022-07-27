@@ -1,9 +1,7 @@
-import { useState } from "react";
-const BookShelfChanger = ({book,onChangeState}) => {
+const BookShelfChanger = ({book,onChangeState, from}) => {
   const changeHandler =(v)=>{
     onChangeState(book,v)
   }
-
   return (
     <div className="book-shelf-changer">
       <select defaultValue={book.shelf} onChange={(e)=> changeHandler(e.target.value)}>
@@ -13,7 +11,7 @@ const BookShelfChanger = ({book,onChangeState}) => {
         <option value="currentlyReading" >Currently Reading</option>
         <option value="wantToRead" >Want to Read</option>
         <option value="read">Read</option>
-        <option value="none">None</option>
+        {from === "shelves" && (<option value="none">None</option>)}
       </select>
     </div>
   );
