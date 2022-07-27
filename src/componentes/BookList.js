@@ -1,5 +1,6 @@
 import BookShelfChanger from "./BookShelfChanger";
-const BookList = ({ books, onChangeState, from}) => {
+import PropTypes from "prop-types";
+const BookList = ({ books, onChangeState }) => {
   return (
     <ol className="books-grid">
       {books.map((bo) => {
@@ -12,13 +13,15 @@ const BookList = ({ books, onChangeState, from}) => {
                   style={{
                     width: 128,
                     height: 193,
-                    backgroundImage: `url(${bo.imageLinks? bo.imageLinks.smallThumbnail: "" })`,
+                    backgroundImage: `url(${
+                      bo.imageLinks ? bo.imageLinks.smallThumbnail : ""
+                    })`,
                   }}
                 ></div>
-                <BookShelfChanger book={bo} onChangeState={onChangeState}  from={from}/>
+                <BookShelfChanger book={bo} onChangeState={onChangeState} />
               </div>
               <div className="book-title">{bo.title}</div>
-              <div className="book-authors">{bo.authors}</div>
+              <div className="book-authors">{bo.authors? bo.authors.join(", "): ""}</div>
             </div>
           </li>
         );
@@ -26,5 +29,8 @@ const BookList = ({ books, onChangeState, from}) => {
     </ol>
   );
 };
-
+BookList.propTypes = {
+  books: PropTypes.array.isRequired,
+  onChangeState: PropTypes.func.isRequired,
+};
 export default BookList;

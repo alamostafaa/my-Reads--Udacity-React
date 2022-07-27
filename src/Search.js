@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { search } from "./BooksAPI";
 import BookList from "./componentes/BookList";
 import modifyBooksState from "./methods/ModifyBookState";
+import PropTypes from "prop-types";
 
+let flag = false;
 const Search = ({ onChangeState, shelfBooks }) => {
   const [query, setQuery] = useState("");
   const [searchBooks, setSearchBooks] = useState([]);
@@ -12,20 +14,22 @@ const Search = ({ onChangeState, shelfBooks }) => {
     try {
       if (q !== "") {
         let resBooks = await search(q, 20);
-        if(resBooks.error){
+        if (resBooks.error) {
+          flag = true;
           setSearchBooks([]);
-        }else
-        {
+        } else {
           resBooks = modifyBooksState(resBooks, shelfBooks);
           setSearchBooks(resBooks);
         }
       } else {
         setSearchBooks([]);
+        flag = false
       }
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(flag);
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -42,11 +46,25 @@ const Search = ({ onChangeState, shelfBooks }) => {
         </div>
       </div>
       <div className="search-books-results">
-        {searchBooks.length > 0 &&(<BookList books={searchBooks} onChangeState={onChangeState} from="search"/>)}
-        {searchBooks.length === 0 && (<h3>No Data</h3>)}
+        {searchBooks.length > 0 && (
+          <BookList
+            books={searchBooks}
+            onChangeState={onChangeState}
+            from="search"
+          />
+        )}
+        {flag && (
+          <h3 style={{textAlign:"center"}}>
+            No Data found
+          </h3>
+        )}
       </div>
     </div>
   );
 };
 
+Search.propTypes = {
+  onChangeState: PropTypes.func.isRequired,
+  shelfBooks: PropTypes.array.isRequired,
+};
 export default Search;
