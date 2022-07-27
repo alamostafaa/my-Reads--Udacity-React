@@ -11,7 +11,7 @@ const Search = ({ onChangeState, shelfBooks }) => {
     setQuery(q);
     try {
       if (q !== "") {
-        let resBooks = await search(q, 10);
+        let resBooks = await search(q, 20);
         if(resBooks.error){
           setSearchBooks([]);
         }else
